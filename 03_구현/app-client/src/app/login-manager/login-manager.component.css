@@ -1,0 +1,17 @@
+a {
+    color: #333A42;
+}
+
+a:hover {
+    color: #333A42;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a:active {
+    color: #333A42;
+}
+
+.login {
+    font-size: 1.2rem;
+}

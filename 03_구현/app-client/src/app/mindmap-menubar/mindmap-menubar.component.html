@@ -1,0 +1,21 @@
+<div class="menubar" fxLayout="row" fxLayoutAlign="space-between">
+    <div *ngIf="isEditor" fxFlex fxLayout="row" fxLayoutAlign="space-between">
+        <div>
+            <button type="button" class="btn btn-outline-primary" (click)="openMindmapSearcher()"> Search </button>
+            <button type="button" class="btn btn-outline-primary" (click)="openMindmapCoop()"> Social </button>
+            <button type="button" class="btn btn-outline-primary" (click)="openMindmapForm()"> Form Option </button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-outline-success" (click)="addIdea()"> Add </button>
+            <button type="button" class="btn btn-outline-danger" (click)="deleteIdea()"> Delete </button>
+        </div>
+    </div>
+    <div *ngIf="!isEditor" fxFlex class="non-editor" fxLayout="row" fxLayoutAlign="space-between">
+        <div>
+            <button type="button" class="btn btn-outline-primary" (click)="openMindmapSearcher()"> Search </button>
+        </div>
+        <div class="title" fxLayoutAlign=" center">
+            {{ name }}
+        </div>
+    </div>
+</div>

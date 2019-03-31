@@ -1,0 +1,14 @@
+<form (ngSubmit)="registerMember()" #prodForm="ngForm">
+  <div fxFlex fxLayoutGap="10px" fxLayout="row wrap" fxLayoutAlign="center" class="register">
+    <input name="email" type="email" class="form-control" [ngStyle]="email.value != 0 && ((!email.valid && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (email.valid && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+      placeholder="Enter email" [(ngModel)]="member.id" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel"
+      ngbPopover="username@email.com" triggers="focus:focusout">
+    <input name="pwd" type="password" class="form-control" [ngStyle]="pwd.value != 0 && ((!pwd.valid && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (pwd.valid && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+      placeholder="Password" [(ngModel)]="member.password" required minlength="7" maxlength="12" #pwd="ngModel" ngbPopover="require 7 ~ 12 digits"
+      triggers="focus:focusout">
+    <input name="confirm" type="password" class="form-control" [ngStyle]="confirm.value != 0 && ((pwd.value != confirm.value && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (pwd.value == confirm.value && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+      placeholder="Password confirm" [(ngModel)]="p_confrim" required #confirm="ngModel" ngbPopover="enter your password again"
+      triggers="focus:focusout">
+    <input type="submit" class="btn btn-outline-primary" value="Sign up" [disabled]="!prodForm.form.valid || pwd.value != confirm.value">
+  </div>
+</form>

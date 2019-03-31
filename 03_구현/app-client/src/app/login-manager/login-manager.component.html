@@ -1,0 +1,14 @@
+<form *ngIf="_loginService.getMember() == null" (ngSubmit)="login()" #prodForm="ngForm">
+    <div fxLayoutGap="10px" fxLayout="row wrap">
+        <input name="email" type="email" class="form-control" [ngStyle]="email.value != 0 && ((!email.valid && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (email.valid && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+            placeholder="Enter email" [(ngModel)]="member.id" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #email="ngModel">
+        <input name="pwd" type="password" class="form-control" [ngStyle]="pwd.value != 0 && ((!pwd.valid && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (pwd.valid && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+            placeholder="Password" [(ngModel)]="member.password" required minlength="7" maxlength="12" #pwd="ngModel">
+        <input type="submit" class="btn btn-outline-dark" value="Sign in" [disabled]="!prodForm.form.valid">
+    </div>
+</form>
+
+<div *ngIf="_loginService.getMember() != null" fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="end center" class="login">
+    <a routerLink="/member-info"> {{ _loginService.getMember().id }} </a>
+    <button class="btn btn-outline-dark" (click)="logout()"> logout </button>
+</div>

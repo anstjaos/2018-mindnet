@@ -1,0 +1,18 @@
+<div fxFlex class="editor" id="canvas_container">
+  <div style="position: absolute; " (mousemove)="onMouseMove($event)" (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)">
+    <div class="body canvas" id="canvas">
+      <div class="body graphics" id="graphics_container">
+        <!-- 각종 이미지 속성들 추가 -->
+        <svg class="body graphics" (click)="onClick($event)">
+        </svg>
+      </div>
+      <!-- 이곳에 아이디어 추가 -->
+      <ng-container *ngFor="let idea of _ideaList; trackBy: trackByFn">
+        <app-idea [idea]="idea" [isEditor]="_isEditor" (dragBeginEmitter)="dragBeginIdea($event)" (dragEndEmitter)="dragEndIdea($event)"></app-idea>
+      </ng-container>
+      <ng-container *ngFor="let branch of _branchList; trackBy: trackByFn">
+        <app-branch [branch]='branch' (moveEmitter)="movingBranch($event)"></app-branch>
+      </ng-container>
+    </div>
+  </div>
+</div>

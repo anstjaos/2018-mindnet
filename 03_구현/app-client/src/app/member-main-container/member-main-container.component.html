@@ -1,0 +1,6 @@
+<div fxLayout="column" class="app-container">
+  <app-main-nav></app-main-nav>
+  <app-member-menubar (mindmapRefreshEmitter)="refreshMindmapList()" (mindmapSeacherOpenEmitter)="openMindmapSearcher()"></app-member-menubar>
+  <app-member-mindmap-list fxFlex fxLayout="column"></app-member-mindmap-list>
+</div>
+<app-mindmap-searcher [state]="_mindmapSearcherState" [left]="'75%'" (mindmapSearcherCloseEmitter)="closeMindmapSearcher()"></app-mindmap-searcher>

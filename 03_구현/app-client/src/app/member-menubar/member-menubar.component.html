@@ -1,0 +1,36 @@
+<div fxLayout="row" fxLayoutAlign="space-between" class="menubar">
+  <button class="btn btn-outline-primary" (click)="open(newMindmap)"> New mindmap </button>
+  <button class="btn btn-outline-primary" (click)="openMindmapSearcher()"> Search mindmap </button>
+</div>
+
+<!-- Modal Template -->
+<ng-template #newMindmap let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"> Create new mindmap </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="create-from" (ngSubmit)="createMindmap()" #prodForm="ngForm">
+      <div fxLayout="column">
+        <div fxLayout="column">
+          <label> Mindmap name: </label>
+          <input name="name" type="text" class="form-control" [(ngModel)]="mindmap.name" required>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" style="margin-top: 15px;">
+          <label> Scope: </label>
+          <div fxLayout="row" style="margin-right: 5px;">
+            <label> private </label>
+            <ui-switch name="scope" style="margin: 0 10px 0 10px;" [(ngModel)]="mindmap.scope"></ui-switch>
+            <label> public </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" form="create-from" [disabled]="!prodForm.form.valid"> Create </button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')"> Close </button>
+  </div>
+</ng-template>

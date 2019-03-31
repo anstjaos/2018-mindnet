@@ -1,0 +1,27 @@
+.color {
+    width: 27px;
+    height: 27px;
+    border-radius: 100%;
+    padding: 1px;
+    display: inline-block;
+    cursor: pointer;
+    
+}
+
+.item{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: 2px solid transparent;
+}
+
+.item_clicked{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: 2px solid brown;
+}
+
+.item:hover{
+    border: 2px solid brown;
+}

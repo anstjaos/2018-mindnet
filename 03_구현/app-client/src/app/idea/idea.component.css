@@ -1,0 +1,81 @@
+.idea{
+    min-height: 46px;
+    padding: 10px;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    z-index: 105;
+    border:2px solid #333A42;
+    background-color: #f0f8ff;
+    
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.content{
+    min-width: 28px;
+    white-space: pre;
+    word-wrap: break-word;
+    display: inline-block;
+    text-align: center;
+    z-index: inherit;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.default .tk_label .root_child {
+    font-family: Avenir, Segoe UI, Helvetica, Arial, sans-serif;
+}
+
+.tk_title {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.nonclicked {
+    border-radius: 10px;    
+}
+
+.clicked {
+    background-color: #ffd476;
+    box-shadow: 0 0 0 0.4rem #ffd47680;
+    border-radius: 10px;
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+
+#captionList{
+    display : block;
+    width: 400px;
+    height: 600px;
+    overflow: auto;
+}
+
+#recommendList {
+    cursor: pointer;
+    display : block;
+    width: 400px;
+    height: 400px;
+    overflow: auto;
+}
+
+.image{
+    width: 304px;
+    height: 154px;
+}
+
+#hiddenButton{
+    padding : 2px;
+}
+
+.buttonDiv{
+    position: absolute;
+}

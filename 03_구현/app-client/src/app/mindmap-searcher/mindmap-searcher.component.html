@@ -1,0 +1,33 @@
+<div [@myAnimation]="state" class="frame" [ngStyle]="{'left': left}">
+  <div fxFill fxLayout="column">
+    <div fxFlex="none" fxLayoutAlign="center center" class="header"> SEARCH </div>
+    <div fxFlex fxLayoutGap="10px" fxLayout="column" fxLayoutAlign=" none" class="body">
+      <form (ngSubmit)="searchMindmap()" #prodForm="ngForm">
+        <div fxLayoutGap="10px" fxLayout="row">
+          <input fxFlex name="mindmapName" type="text" class="form-control" [(ngModel)]="_mindmapName" required>
+          <button fxFlex="30" type="submit" class="btn btn-outline-dark" [disabled]="!prodForm.form.valid"> SEARCH </button>
+        </div>
+      </form>
+      <div fxFlex fxLayout="row">
+        <div fxFlex>
+          <ng-scrollbar>
+            <div fxLayout="column" class="search-item" fxLayout="column" *ngFor="let mindmap of _mindmapList"  routerLink="/mindmap/{{ mindmap._id }}">
+              <div fxFlex="70" fxLayoutAlign=" center" style="padding: 0px 10px 0px 10px; font-size: 1.3rem;">
+                {{ mindmap.name }}
+              </div>
+              <div fxFlex fxLayout="row" fxLayoutAlign=" center" style="padding: 0px 10px 0px 10px; background-color: #333A4299; color: #F1ECE9;">
+                <div fxFlex="80">
+                  Owner : {{ mindmap.owner }}
+                </div>
+                <div fxFlex fxLayoutAlign="center">
+                  Coop : {{ mindmap.editors.length }}
+                </div>
+              </div>
+            </div>
+          </ng-scrollbar>
+        </div>
+      </div>
+    </div>
+    <button fxFlex="none" class="footer" (click)="closeMindmapSearcher()"> CLOSE </button>
+  </div>
+</div>

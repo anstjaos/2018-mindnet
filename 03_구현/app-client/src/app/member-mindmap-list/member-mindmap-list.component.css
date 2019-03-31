@@ -1,0 +1,119 @@
+a {
+    color: #485058;
+}
+
+a:hover {
+    color: #333A42;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    padding: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-bottom: 1px solid #48505850;
+    
+    transition: background-color 300ms linear;
+}
+
+li:hover {
+    background-color: #A6A5A150;
+    color: #333A42;
+    font-weight: 400;
+
+    transition: background-color 100ms linear;
+}
+
+li button {
+    visibility: hidden;
+}
+
+li:hover button {
+    visibility: visible;
+}
+
+.mindmap-list {
+    width: 100%;
+    color: #485058;
+    background: linear-gradient(#F1ECE9, #dfdad7);
+    padding: 4% 7% 4% 7%;
+    border-radius: 0 0 2rem 2rem;
+}
+
+.list-title {
+    padding: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    font-size: 1.2rem;
+    font-weight: 250;
+    border-bottom: 1px solid #48505850;
+}
+
+.btn-image {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    outline: none;
+}
+
+/* bootstrap override */
+
+:host >>> .tooltip-inner {
+    background-color: #333A42;
+    color: #F1ECE9;
+}
+
+:host >>> .bs-tooltip-top .arrow::before {
+    border-top-color: #333A42;
+}
+
+/* Modal CSS 재정의 */
+
+.form-control {
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.3rem #28a74580;
+}
+
+
+
+.btn-outline-dark {
+    color: #333A42;
+    border-color: #343a40;
+}
+
+.btn-outline-dark:hover {
+    color: #F1ECE9;
+    background-color: #333A42;
+    border-color: #333A42;
+}
+
+.btn-outline-dark:focus, .btn-outline-dark.focus {
+    box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+
+.btn-outline-dark.disabled, .btn-outline-dark:disabled {
+    color: #333A42;
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled):active, .btn-outline-dark:not(:disabled):not(.disabled).active,
+.show > .btn-outline-dark.dropdown-toggle {
+    color: #F1ECE9;
+    background-color: #333A42;
+    border-color: #333A42;
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled):active:focus, .btn-outline-dark:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-dark.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}

@@ -1,0 +1,107 @@
+<div fxFlex fxLayout="row" fxLayoutAlign=" none">
+  <div fxLayout="column" class="mindmap-list">
+    <!-- 상단 타이틀 바 -->
+    <h4> My mindmap </h4>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="list-title">
+      <div fxFlex="65"> Name. </div>
+      <div fxFlex="10" fxLayoutAlign="center"> Scope. </div>
+      <div fxFlex fxLayoutAlign="center"> Last modify date. </div>
+    </div>
+
+    <!-- 리스트 출력 -->
+    <ul>
+      <ng-container *ngFor="let mindmap of _mindmapList; trackBy: trackByFn">
+        <li *ngIf="mindmap.owner == _loginService.getMember().id" fxLayout="row" fxLayoutAlign="space-between center" (mouseenter)="onMouseEnter(mindmap)">
+          <div fxLayoutGap="10px" fxFlex="65" fxLayout="row">
+            <div>
+              <a routerLink="/mindmap/{{ mindmap._id }}"> {{ mindmap.name }} </a>
+            </div>
+            <div>
+              <button class="btn-image" placement="top" ngbTooltip="edit">
+                <img src="assets/edit.png" style="max-width: 1rem;" (click)="open(modifyMindmap)">
+              </button>
+              <button class="btn-image" placement="top" ngbTooltip="delete" (click)="open(deleteMindmap)">
+                <img src="assets/delete.png" style="max-width: 1rem;">
+              </button>
+            </div>
+          </div>
+          <div fxFlex="10" fxLayoutAlign="center start">
+            <img [src]="mindmap.scope && 'assets/unlock.png' || 'assets/lock.png'" style="max-width: 1rem;"> </div>
+          <div fxFlex fxLayoutAlign="center"> {{ mindmap.mtime | date : "y-MM-dd HH:mm:ss" }} </div>
+        </li>
+      </ng-container>
+    </ul>
+
+    <!-- 상단 타이틀 바 -->
+    <h4 style="margin-top: 50px;"> Coop mindmap </h4>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="list-title">
+      <div fxFlex="65"> Name. </div>
+      <div fxFlex="10" fxLayoutAlign="center"> Scope. </div>
+      <div fxFlex fxLayoutAlign="center"> Last modify date. </div>
+    </div>
+
+    <!-- 리스트 출력 -->
+    <ul>
+      <ng-container *ngFor="let mindmap of _mindmapList">
+        <li *ngIf="mindmap.owner != _loginService.getMember().id" fxLayout="row" fxLayoutAlign="space-between center" (mouseenter)="onMouseEnter(mindmap)">
+          <div fxLayoutGap="10px" fxFlex="65" fxLayout="row">
+            <a routerLink="/mindmap/{{ mindmap._id }}"> {{ mindmap.name }} </a>
+          </div>
+          <div fxFlex="10" fxLayoutAlign="center start">
+            <img [src]="mindmap.scope && 'assets/unlock.png' || 'assets/lock.png'" style="max-width: 1rem;"> </div>
+          <div fxFlex fxLayoutAlign="center"> {{ mindmap.mtime | date : "y-MM-dd HH:mm:ss" }} </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal Template -->
+<ng-template #modifyMindmap let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"> Create new mindmap </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="modify-from" (ngSubmit)="updateMindmap()" #prodForm="ngForm">
+      <div fxLayout="column">
+        <div fxLayout="column">
+          <label> Mindmap name: </label>
+          <input name="name" type="text" class="form-control" [(ngModel)]="_current.name" required>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between" style="margin-top: 15px;">
+          <label> Scope: </label>
+          <div fxLayout="row" style="margin-right: 5px;">
+            <label> private </label>
+            <ui-switch name="scope" style="margin: 0 10px 0 10px;" [(ngModel)]="_current.scope"></ui-switch>
+            <label> public </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-success" form="modify-from" [disabled]="!prodForm.form.valid"> Modify </button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')"> Close </button>
+  </div>
+</ng-template>
+
+<ng-template #deleteMindmap let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"> Delete mindmap </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Are you sure delete?
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-danger" (click)="removeMindmap()"> Delete </button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')"> Close </button>
+  </div>
+</ng-template>

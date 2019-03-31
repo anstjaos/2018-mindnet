@@ -1,0 +1,27 @@
+<div fxLayout="column" class="app-container">
+  <app-main-nav></app-main-nav>
+  <div fxFlex fxLayoutGap="40px" fxLayout="column" fxLayoutAlign="start start" class="member-info">
+    <!-- 상단 타이틀 바 -->
+    <h4> My information </h4>
+    <form (ngSubmit)="updateMember()" fxLayoutGap="20px" fxLayout="column" #prodForm="ngForm">
+      <div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="30"> ID </div>
+        <div fxFlex fxLayoutAlign="center center"> {{ member.id }} </div>
+      </div>
+      <div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="30"> PASSWORD </div>
+        <input name="pwd" type="password" class="form-control" [ngStyle]="pwd.value != 0 && ((!pwd.valid && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (pwd.valid && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+          placeholder="Password" [(ngModel)]="member.password" required minlength="7" maxlength="12" #pwd="ngModel">
+      </div>
+      <div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="30"> CONFIRM </div>
+        <input name="confirm" type="password" class="form-control" [ngStyle]="confirm.value != 0 && ((pwd.value != confirm.value && {'box-shadow': '0 0 0 0.3rem rgba(215, 68, 63, 0.5)'}) || (pwd.value == confirm.value && {'box-shadow': '0 0 0 0.3rem rgba(66, 169, 72, 0.5)'}))"
+          placeholder="Password confirm" [(ngModel)]="p_confirm" required #confirm="ngModel">
+      </div>
+      <div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="end center">
+        <button type="submit" class="btn btn-outline-success" [disabled]="!prodForm.form.valid || pwd.value != confirm.value"> MODIFY </button>
+        <button (click) = "unregisterMember()" class="btn btn-outline-danger"> UNREGISTER </button>
+      </div>
+    </form>
+  </div>
+</div>

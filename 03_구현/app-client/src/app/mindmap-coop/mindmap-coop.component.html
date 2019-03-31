@@ -1,0 +1,61 @@
+<div [@myAnimation]="state" class="frame" [ngStyle]="{'left': left}">
+  <div fxFill fxLayout="column">
+    <div fxFlex="none" fxLayoutAlign="center center" class="header"> SOCIAL </div>
+    <div fxFlex fxLayout="column" fxLayoutAlign="none" class="body">
+      <div fxFlex fxLayout="row">
+        <div fxFlex fxLayoutGap="10px" fxLayout="column">
+          <div fxFlex="40" fxLayoutGap="10px" fxLayout="column">
+            <form (ngSubmit)="searchMember()" #searchForm="ngForm">
+              <div fxLayoutGap="10px" fxLayout="row">
+                <input fxFlex name="email" type="text" class="form-control" [(ngModel)]="_memberEmail" autocomplete=off required>
+                <button fxFlex="30" type="submit" class="btn btn-outline-dark" [disabled]="!searchForm.form.valid"> Search </button>
+              </div>
+            </form>
+            <h5> Search </h5>
+            <ng-scrollbar fxFlex class="listbox">
+              <ul>
+                <li *ngFor="let member of _memberList;" (click)="addCoop(member)"> {{ member.id }} </li>
+              </ul>
+            </ng-scrollbar>
+            <h5> Cooperators </h5>
+            <ng-scrollbar fxFlex class="listbox">
+              <ul>
+                <li *ngFor="let editor of _mindmap.editors; let i = index;">
+                  {{ editor }}
+                  <button *ngIf="_mindmap.owner != editor && _mindmap.owner == _loginService.getMember().id" type="button" class="btn-image"
+                    (click)="removeCoop(editor)">
+                    <img src="assets/delete.png" style="max-width: 1rem;">
+                  </button>
+                </li>
+              </ul>
+            </ng-scrollbar>
+          </div>
+          <div fxFlex="60" fxLayoutGap="10px" fxLayout="column">
+            <h5> Comments </h5>
+            <ng-scrollbar fxFlex class="listbox">
+              <ul>
+                <li *ngFor="let comment of _commentList; trackBy: trackByFn">
+                  <div fxLayout="column">
+                    <p class="writer">
+                      {{ comment.writer }} ({{ comment.ctime | date : "MM-dd HH:mm" }})
+                      <button *ngIf="comment.writer == _loginService.getMember().id" type="button" class="btn-image" (click)="removeComment(comment)">
+                        <img src="assets/delete.png" style="max-width: 1rem;">
+                      </button>
+                    </p>
+                    <p> {{ comment.content }} </p>
+                  </div>
+                </li>
+              </ul>
+            </ng-scrollbar>
+            <form (ngSubmit)="addComment()" #commentForm="ngForm">
+              <div fxLayoutGap="10px" fxLayout="row">
+                <input fxFlex #input id="input" name="comment" type="text" class="form-control" [(ngModel)]="_content" autocomplete=off required>
+                <button fxFlex="30" type="submit" class="btn btn-outline-dark" [disabled]="!commentForm.form.valid"> Insert </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="footer" (click)="closeMindmapCoop()"> CLOSE </button>
+  </div>

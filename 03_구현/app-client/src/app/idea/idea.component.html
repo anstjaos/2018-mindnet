@@ -1,0 +1,73 @@
+<div #frame class="idea" fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="center center" [ngDraggable]="isEditor && !_isEditing"
+  [position]="_position" [ngClass]="{'nonclicked': !_isSelected, 'clicked': _isSelected}" [ngStyle]="{'font-weight': idea.bold, 'font-style': idea.tilt, 'text-decoration': idea.crossline, 'font-size': idea.fsize.toString() + 'px', 'font-family': idea.font,
+  'color': idea.fcolor, 'background-color': idea.bgcolor}" (dblclick)="onDblClick($event)" (movingOffset)="onMoving($event)"
+  (mousedown)="onMouseDown($event)" (started)="onDragBegin($event)" (stopped)="onDragEnd($event)">
+  <iframe *ngIf="idea.video" [src]="idea.video | safe"></iframe>
+  <img class="image" *ngIf="idea.image" [src]="idea.image | safe">
+  <div #content class="content" contenteditable="false" (keyup)="onKeyUp($event)" (keydown)="onKeyDown($event)" >{{ idea.content }}</div>
+</div>
+<div class="buttonDiv" [ngStyle]="{'left': idea.position.x + idea.width+ 5 + 'px','top': idea.position.y + 'px'}">
+  <button id="hiddenButton" class="close" type="button" [ngStyle]="{'display' : buttonDisplay}" (mousedown)="onMouseDown($event)" (click)="captionOpen(caption)">
+    <img id="hiddenIcon" src="assets/chat.png" style="max-width: 1rem;">
+  </button>
+  <button id="hiddenButton" class="close" type="button" [ngStyle]="{'display' : buttonDisplay}" (mousedown)="onMouseDown($event)" (click)="recommendOpen(recommend)">    
+    <img id="hiddenIcon" src="assets/search.png" style="max-width: 1rem;">
+  </button>
+</div>
+
+
+<ng-template #caption let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"> 캡션 </h4>
+    <button type="button" class="close" aria-label="Close" (click)="captionClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- 캡션 리스트-->
+    <div>
+      <ul #captionList id='captionList'>
+        <li *ngFor="let caption of _captionList">
+          <div class="info">
+            <h6>{{caption.writer}}</h6>
+            <button *ngIf="caption.writer == _loginService.getMember().id" type="button" class="close" aria-label="Close" style="margin-right: 10px;" (click)="removeCaption(caption)">
+              <img src="assets/delete.png" style="max-width: 1rem;">
+            </button>
+            <div class="in">{{caption.content}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="insertComment">
+        <form #f="ngForm" (ngSubmit)="addCaption(f)">
+            <input #input id="input" name="input" type="text" [(ngModel)]="serach" required>
+            <button type="submit">입력</button>
+        </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="captionClose()"> Close </button>
+  </div>
+</ng-template>
+
+<ng-template #recommend let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title"> 아이디어 추천 </h4>
+      <button type="button" class="close" aria-label="Close" (click)="recommendClose()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <ul #recommendList *ngIf="_recommendList.length != 0" id='recommendList' selectionModel>
+          <li *ngFor="let recommend of _recommendList" (click)="selectRecommend(recommend._id)">
+              <div>{{recommend.count}} : {{recommend._id}}</div>
+          </li>
+        </ul>
+        <div *ngIf="_recommendList.length == 0"> 추천할 아이디어가 없습니다.</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="recommendClose()"> Close </button>
+    </div>
+  </ng-template>

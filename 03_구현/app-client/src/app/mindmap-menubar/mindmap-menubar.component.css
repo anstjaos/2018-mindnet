@@ -1,0 +1,13 @@
+.menubar{
+    background-color: #485058;
+    padding: 0.9% 2% 0.9% 2%;
+}
+
+.non-editor {
+    height: 38px;
+    color: #F1ECE9;
+}
+
+.title {
+    font-size: 1.4rem;
+}

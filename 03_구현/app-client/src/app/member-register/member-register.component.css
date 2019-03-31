@@ -1,0 +1,10 @@
+.register {
+    padding: 1%;
+    background-color: #485058;
+}
+
+/* bootstrap override */
+
+:host >>> .btn {
+    width: 12rem;
+}

@@ -1,0 +1,26 @@
+<!--
+<div class="style"fxLayout="column" fxLayoutAlign="center center">
+  <table>
+    <tr *ngFor="let lineStyle of _styles;">
+      <div  [ngClass]="{'line_item': lineStyle !== _curStyle, 'line_item_clicked': lineStyle === _curStyle}" fxLayoutAlign="start start">
+          <img class="line"  [src]='"/assets/" + lineStyle + ".png"'>
+      </div>
+    </tr>
+  </table>
+  <div fxFlex="none" class="footer" (click)="closeStyle()">X</div>
+</div>
+-->
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-dark" ngbDropdownToggle>Line Style</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual" >
+        <button *ngFor="let style of _styles"  class="dropdown-item"(click)="changeLineStyle(style)">
+          <div>
+            <img class="line" [src]='"/assets/" + style + ".png"'>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

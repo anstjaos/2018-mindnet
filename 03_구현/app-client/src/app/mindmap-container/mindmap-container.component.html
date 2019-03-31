@@ -1,0 +1,9 @@
+<div fxLayout="column" class="app-container">
+  <app-main-nav></app-main-nav>
+  <app-mindmap-menubar [isEditor]="mindmapEditor._isEditor" [name]="mindmapEditor._mindmap.name" (ideaAddEmitter)="addIdea()" (ideaDeleteEmitter)="deleteIdea()" (mindmapSeacherOpenEmitter)="openMindmapSearcher()" (mindmapFormOpenEmitter)="openMindmapForm()" (mindmapCoopOpenEmitter)="openMindmapCoop()"></app-mindmap-menubar>
+  <app-mindmap-editor fxFlex fxLayout="column" [formState]="_mindmapFormState" ></app-mindmap-editor>
+</div>
+<app-mindmap-searcher [state]="_mindmapSearcherState" [left]="'0%'" (mindmapSearcherCloseEmitter)="closeMindmapSearcher()"></app-mindmap-searcher>
+<app-mindmap-coop [state]="_mindmapCoopState" [left]="'0%'" (mindmapCoopCloseEmitter)="closeMindmapCoop()"></app-mindmap-coop>
+<app-mindmap-form [_current]="mindmapEditor._current" [left]="'0%'" [state]="_mindmapFormState" (mindmapFormCloseEmitter)="closeMindmapForm()"></app-mindmap-form>
+

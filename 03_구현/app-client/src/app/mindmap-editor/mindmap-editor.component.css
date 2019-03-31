@@ -1,0 +1,22 @@
+.body {
+    width: 10000px;
+    height: 6000px;
+}
+
+.canvas {
+    position: relative;
+}
+
+.graphics {
+    position: absolute;
+}
+
+.editor {
+    position: relative; 
+    overflow: scroll; 
+    background: linear-gradient(#F1ECE9, #dfdad7); 
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}

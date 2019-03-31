@@ -1,0 +1,95 @@
+.frame {
+    position: fixed;
+    top: 0;
+    width: 25%;
+    height: 100vh;
+    background: #F1ECE9;
+    box-shadow: 0 0 0.2rem 0.4rem #0000006c;    
+    z-index: 2013;
+}
+
+.header {
+    height: 4rem;
+    color: #333A42;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.body {
+    padding: 5%;
+}
+
+.footer {
+    width: 100%;
+    height: 4rem;
+    color: #333A42;
+    background-color: #c7c4c2;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    outline: none;
+
+    transition: background-color 300ms linear;
+}
+
+.footer:hover {
+    color: #F1ECE9;
+    background-color: #485058;
+
+    transition: 300ms linear;
+}
+
+.footer:active {
+    color: #F1ECE9;
+    background-color: #727e8a;
+
+    transition: 300ms linear;
+}
+
+
+#videoList{
+    cursor: pointer;
+    display : block;
+    width: 400px;
+    height: 600px;
+    overflow: auto;
+}
+input{
+    width: 200px;
+}
+ul,li{
+    list-style-type: none;
+}
+li{
+    margin-bottom: 5px;
+    border-width: 5px;
+    border-style: groove;
+    border-color: silver;
+}
+.in{
+    width: 320px;
+}
+.info{
+    width: 320px;
+}
+
+.thumbnails{
+    border-width: 0px;
+    height: 180px;
+    width: 320px;
+}
+
+.multimedia{
+    cursor: pointer;
+    width: 107px; 
+    height: 100px;
+}
+
+.youtube{
+    cursor: pointer;
+    width: 100px; 
+    height: 80px;
+}
+.btn{
+    color: brown;
+}

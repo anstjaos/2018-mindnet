@@ -1,0 +1,12 @@
+<div class="host">
+    <div id="hdl1" class="connection_handle" [hidden]="!_isFocused" ngDraggable [position]="_position_h1" (movingOffset)="onMovingHdl1($event)"
+        (stopped)="onDragEnd($event)" (mousedown)="onMouseDown($event)" (dblclick)="onDblClick($event)">
+    </div>
+    <div id="hdl2" class="connection_handle" [hidden]="!_isFocused" ngDraggable [position]="_position_h2" (movingOffset)="onMovingHdl2($event)"
+        (stopped)="onDragEnd($event)" (mousedown)="onMouseDown($event)" (dblclick)="onDblClick($event)">
+    </div>
+</div>
+
+<div  *ngIf="_dblClicked"(mousedown)="onMouseDown($event)" [ngStyle]="{'left': _position_style.x + 'px', 'top':_position_style.y +'px', 'position':'absolute'}">
+    <app-branch-style-table (lineStyleChange)="changeLineStyle($event)"></app-branch-style-table>
+</div>

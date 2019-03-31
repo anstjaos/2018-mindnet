@@ -1,0 +1,15 @@
+<div fxLayout="column" fxLayoutAlign="center">
+  <table>
+    <tr *ngFor="let color of _colors; let i = index">
+      <th *ngFor="let mycolor of color; let j = index">
+        <div fxLayoutAlign="center center" [ngClass]="{'item': mycolor !== (_fmode? _curFcolor : _curBgcolor), 'item_clicked': mycolor === (_fmode? _curFcolor : _curBgcolor)}">
+          <div class="color" [attr.data-color]="mycolor" [ngStyle]="{ 'background-color': mycolor }" (click)="changeColor($event)"></div>
+        </div>
+      </th>
+    </tr>
+  </table>
+  <div fxLayout="row" fxLayoutAlign="center" fxFlexOffset="10" class="btn-group" >
+    <input class="btn btn-outline-dark" [ngClass]="{'active': _fmode}" (click)="onTextbtnClick($event)" type="button" value="Text">
+    <input class="btn btn-outline-dark" [ngClass]="{'active': _bgmode}" (click)="onBgbtnClick($event)" type="button" value="Background">
+  </div>
+</div>

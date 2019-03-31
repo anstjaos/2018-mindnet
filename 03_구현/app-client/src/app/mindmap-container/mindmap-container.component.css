@@ -1,0 +1,5 @@
+.app-container {
+    height: 100%;
+    border-radius: 2rem 2rem 0 0;
+    box-shadow: 0 0 0.2rem 0.4rem #00000033;
+}

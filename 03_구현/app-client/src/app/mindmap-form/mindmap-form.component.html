@@ -1,0 +1,94 @@
+<div *ngIf="_current != null" [@myAnimation]="state" class="frame" [ngStyle]="{'left': left}">
+  <div fxFill fxLayout="column">
+    <div fxFlex="none" fxLayoutAlign="center center" class="header"> FORM </div>
+    <div fxFlex fxLayoutGap="10px" fxLayout="column" class="body">
+      <div fxFlex fxLayout="row">
+        <div fxFlex fxLayout="column">
+          <div fxFlex="20" fxLayout="column" fxLayoutAlign="center" fxFlexOffset="5">
+            <div fxLayout="row" fxFlexOffset="5">
+              <select fxFlex="45" class="custom-select" [(ngModel)]="font">
+                <option *ngFor="let sFont of fonts">{{sFont.name}}</option>
+              </select>
+              <input fxFlex="32" fxFlexOffset="30" class="form-control" type="number" min="1" [(ngModel)]="fsize">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexOffset="10">
+              <div class="btn-group btn-group-toggle">
+                <label class="btn btn-outline-dark" ngbButtonLabel>
+                  <input type="checkbox" ngbButton [(ngModel)]="bold"> Bold
+                </label>
+              </div>
+              <div class="btn-group btn-group-toggle">
+                <label class="btn btn-outline-dark" ngbButtonLabel>
+                  <input type="checkbox" ngbButton [(ngModel)]="tilt"> Tilt
+                </label>
+              </div>
+              <div class="btn-group btn-group-toggle">
+                <label class="btn btn-outline-dark" ngbButtonLabel>
+                  <input type="checkbox" ngbButton [(ngModel)]="crossline"> Strike
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="50" fxFlexOffset="20" fxLayoutAlign="center center" [style]="">
+            <app-idea-color-table [(bgcolor)]="bgcolor" [(fcolor)]="fcolor"></app-idea-color-table>
+          </div>
+
+          <div fxLayoutAlign="center center" fxFlex="30" fxFlexOffset="30">
+            <div fxLayoutAlign="start start">
+              <img class="multimedia" src="/assets/video.png" (click)="open(videoSearch)">
+              <img class="multimedia" fxFlexOffset="9" src="/assets/videoDel.png" (click)="removeVideo()">
+            </div>
+          </div>
+
+          <div fxLayoutAlign="center center" fxFlex="30">
+            <div fxLayoutAlign="start start">
+              <label>
+                <img class="multimedia"  src="/assets/image.png">
+                <input #fileInput type="file" style="display: none" accept="image/*" (change)="onFileChange(fileInput.files)">
+              </label>
+              <label>
+                <img class="multimedia" fxFlexOffset="15" src="/assets/imageDel.png" (click)="removeImage()">
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button fxFlex="none" class="footer" (click)="closeMindmapForm()"> CLOSE </button>
+  </div>
+</div>
+
+<ng-template #videoSearch let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title"> 유튜브 검색 </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- 유튜브 검색 -->
+    <div fxLayoutAlign="center">
+      <form #f="ngForm" (ngSubmit)="searchVideo(f)">
+        <input #search id="search" name="search" type="text" [(ngModel)]="serach" required>
+        <button type="submit">검색</button>
+      </form>
+    </div>
+    <br>
+    <div>
+      <ul #videoList id='videoList'  selection-model>
+        <li [id]="item.id.videoId" (click)='videoSelecet(item.id.videoId)' *ngFor="let item of _videoList">
+          <img class="thumbnails" [src]="item.snippet.thumbnails.medium.url | safe">
+          <div class="info">
+            <h3>{{item.snippet.title}}</h3>
+            <div class="in">{{item.snippet.channelTitle}}</div>
+            <div class="in">{{item.snippet.publishedAt}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')"> Close </button>
+  </div>
+</ng-template>
